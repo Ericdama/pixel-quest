@@ -1,62 +1,224 @@
-# Base44 Project
+# 🎮 Pixel Quest
 
-Use this repository to run and edit the app locally, then publish changes back through Base44.
+**A pixel-inspired browser game built with React and Base44.**
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+Pixel Quest is a web-based gaming project featuring interactive gameplay, level selection, game settings, audio, and a player interface. This repository allows you to run and edit the application locally and sync your changes with the Base44 Builder.
 
-## Prerequisites
+🔗 **Repository:** [Ericdama/pixel-quest](https://github.com/Ericdama/pixel-quest)
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
-5. Install [Deno](https://docs.deno.com/runtime/getting_started/installation/) — the local Base44 backend runs on it.
+---
 
-Run `base44 --help` (or see the [CLI reference](https://docs.base44.com/developers/references/cli/commands/introduction)) for the full command surface.
+## Features
 
-## Run Locally
+- 🎮 **Interactive Gameplay** — Browser-based game experience.
+- 🗺️ **Level Selection** — Interface for selecting game levels.
+- 🏆 **Leaderboard** — Leaderboard interface for player scores.
+- ⚙️ **Game Settings** — Customize available game options.
+- 📱 **Mobile Controls** — Dedicated mobile control interface.
+- 🔐 **Authentication** — Login, registration, and password recovery interfaces.
+- 🔊 **Audio System** — Separate modules for game audio and music.
+- 📤 **Score Sharing** — Interface for sharing game scores.
+- ⚛️ **Reusable Components** — Organized React components and UI elements.
+- 🔄 **Base44 Integration** — Local development and synchronization with Base44.
 
-Three commands, from the project root:
+*The availability of service-dependent features may require additional configuration.*
+
+---
+
+## 📸 Screenshots
+
+Add screenshots of the actual application to `docs/screenshots/`.
+
+| Main Menu | Gameplay |
+|---|---|
+| ![Main Menu](docs/screenshots/main-menu.png) | ![Gameplay](docs/screenshots/gameplay.png) |
+
+| Level Selection | Settings |
+|---|---|
+| ![Level Selection](docs/screenshots/level-select.png) | ![Settings](docs/screenshots/settings.png) |
+
+> Replace these placeholders with real screenshots. Until the files are added, the images will not display.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, JavaScript, HTML5, CSS
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **Backend and App Platform:** Base44
+- **Version Control:** Git and GitHub
+
+---
+
+## 📋 Prerequisites
+
+Before running Pixel Quest locally, install:
+
+1. [Node.js](https://nodejs.org/)
+2. [Git](https://git-scm.com/)
+3. [Deno](https://docs.deno.com/runtime/getting_started/installation/)
+4. Base44 CLI
+
+Install the Base44 CLI using:
 
 ```bash
-base44 login   # one-time per machine
-base44 link    # one-time per clone
-base44 dev     # local backend + frontend together
+npm install -g base44@latest
 ```
 
-Open the frontend URL that `base44 dev` prints (typically `http://localhost:5173`).
+---
 
-Notes:
+## 🚀 Getting Started
 
-- **Every fresh clone needs `base44 link`.** It writes `base44/.app.jsonc` (the app-id pointer), which is deliberately gitignored. Your app id is in the Builder URL (`app.base44.com/apps/<id>/...`); `base44 link --help` shows the non-interactive flags.
-- **`base44 dev` runs the frontend for you** (via `site.serveCommand` in this repo's `base44/config.jsonc`) — never run `npm run dev` yourself: alone it serves a UI with no backend behind it (`[base44] Proxy not enabled`, every `/api` call fails), and alongside `base44 dev` the second Vite silently takes the next port and you end up looking at the wrong one.
-- **The app must be published at least once for the UI to load under `base44 dev`.** The frontend boots by fetching app settings from the hosted app; before the first publish that fails and every page redirects to login. The local API works regardless.
-- Entities, functions, and auth run locally — entity data is **in-memory only**, wiped when `base44 dev` restarts. Everything else (Core integrations, OAuth login) is forwarded to your deployed app. Full breakdown: [Local development overview](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview).
-
-## Frontend Only, Hosted Backend
-
-To work on just the frontend against your app's live hosted backend:
+### 1. Clone the repository
 
 ```bash
-base44 dev --remote
+git clone https://github.com/Ericdama/pixel-quest.git
 ```
 
-⚠️ In this mode writes go to your app's **production data** — plain `base44 dev` keeps everything local.
+### 2. Enter the project directory
 
-## Publish Your Changes
+```bash
+cd pixel-quest
+```
 
-After pushing your changes to git, open the Base44 dashboard and publish the app:
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Log in to Base44
+
+```bash
+base44 login
+```
+
+Complete the authentication process when prompted.
+
+### 5. Link the project
+
+```bash
+base44 link
+```
+
+Follow the CLI prompts to link the local repository to your Base44 application.
+
+> Each fresh clone needs to be linked. The app ID can be found in your Base44 Builder URL.
+
+### 6. Start the local application
+
+```bash
+base44 dev
+```
+
+Open the frontend URL printed in the terminal, typically `http://localhost:5173`.
+
+**Important:** Use `base44 dev` instead of `npm run dev` for normal local development. Base44 starts the frontend and local backend together.
+
+The application must have been published at least once for the frontend to load its hosted app settings correctly.
+
+---
+
+## 🧪 Local Development Notes
+
+- Entity data is stored in memory during local development and is cleared when the local backend restarts.
+- Core integrations and OAuth login may be forwarded to the deployed application.
+- Use `base44 dev --remote` to run the frontend against the hosted backend.
+- In remote mode, writes can affect production data. Use this mode carefully.
+- Run `base44 --help` to explore available CLI commands.
+
+---
+
+## 🏗️ Project Structure
+
+```text
+pixel-quest/
+├── base44/              # Base44 configuration and entities
+├── src/
+│   ├── api/             # API and Base44 client
+│   ├── components/      # Game and UI components
+│   ├── game/            # Game engine, levels, drawing and audio
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Authentication and shared utilities
+│   ├── pages/           # Application pages
+│   ├── App.jsx          # Main application component
+│   ├── main.jsx         # Application entry point
+│   └── index.css        # Global styles
+├── index.html
+├── package.json
+├── package-lock.json
+├── tailwind.config.js
+└── vite.config.js
+```
+
+---
+
+## 📦 Build for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To preview the build locally:
+
+```bash
+npm run preview
+```
+
+These are the standard Vite commands; verify the scripts in `package.json`.
+
+---
+
+## 🔄 Publish Your Changes
+
+This repository is synchronized with Base44 through GitHub.
+
+1. Make and test your code changes locally.
+2. Commit and push the changes to GitHub.
+3. Open the Base44 dashboard.
+4. Review the synchronized project and publish it through the dashboard.
+
+Open the dashboard using:
 
 ```bash
 base44 dashboard open
 ```
 
-This repo syncs to Base44 through git, so publish from the dashboard rather than `base44 deploy` — a CLI deploy ships your local tree directly, bypassing the sync, and the deployed state silently diverges from the repo.
+Follow the repository's Base44 workflow and publish from the dashboard rather than using `base44 deploy`, which can bypass Git synchronization.
 
-## Docs & Support
+---
 
-GitHub integration: [https://docs.base44.com/developers/app-code/local-development/github](https://docs.base44.com/developers/app-code/local-development/github)
+## 📚 Documentation
 
-Local development: [https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview)
+- [Base44 GitHub Integration](https://docs.base44.com/developers/app-code/local-development/github)
+- [Base44 Local Development Guide](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview)
+- [Base44 CLI Reference](https://docs.base44.com/developers/references/cli/commands/introduction)
+- [Deno Installation](https://docs.deno.com/runtime/getting_started/installation/)
+
+---
+
+## 👨‍💻 Author
+
+**Eric Dama**
+
+- GitHub: [@Ericdama](https://github.com/Ericdama)
+- Repository: [Pixel Quest](https://github.com/Ericdama/pixel-quest)
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Add screenshots and a gameplay video.
+- [ ] Add a live demo link.
+- [ ] Expand levels and gameplay mechanics.
+- [ ] Verify leaderboard persistence and authentication flows.
+- [ ] Add automated testing and accessibility improvements.
+
+---
+
+*Pixel Quest — A gaming project built with React and Base44.*
 
 Support: [https://app.base44.com/support](https://app.base44.com/support)
