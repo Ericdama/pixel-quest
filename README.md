@@ -27,19 +27,13 @@ Pixel Quest is a web-based gaming project featuring interactive gameplay, level 
 
 ## 📸 Screenshots
 
-Add screenshots of the actual application to `docs/screenshots/`.
+### 🎮 Main Menu
 
-| Main Menu | Gameplay |
-|---|---|
-| ![Main Menu](docs/screenshots/main-menu.png) | ![Gameplay](docs/screenshots/gameplay.png) |
+![Pixel Quest Main Menu](docs/screenshots/main-menu.PNG)
 
-| Level Selection | Settings |
-|---|---|
-| ![Level Selection](docs/screenshots/level-select.png) | ![Settings](docs/screenshots/settings.png) |
+*The main menu of Pixel Quest, featuring a retro-inspired gaming experience.*
 
-> Replace these placeholders with real screenshots. Until the files are added, the images will not display.
 
----
 
 ## 🛠️ Tech Stack
 
